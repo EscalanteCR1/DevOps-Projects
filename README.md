@@ -43,7 +43,7 @@ terraform plan
 terraform apply
 ```
 
-> El estado de Terraform se almacena en un bucket de S3 configurado en `main.tf`.
+> El estado de Terraform se almacena en un bucket de S3 configurado en `main.tf`..
 
 ---
 
