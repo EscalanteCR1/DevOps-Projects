@@ -54,9 +54,9 @@ jobs:
           working-directory: ./terraform
 
         - name: Set Output
-          id: "set-ip"
-          run: |-
-             echo "::set-output name=instance_public_ip::$(terraform output instance_public_ip)"
+          id: set-ip
+          run: echo "instance_public_ip=$(terraform output -raw instance_public_ip)" >> $GITHUB_OUTPUT
+          working-directory: ./terraform
 
     deploy-app:
         runs-on: ubuntu-latest
@@ -65,11 +65,6 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v3
-
-            - name: Set Output
-              id: set-ip
-              run: echo "instance_public_ip=$(terraform output -raw instance_public_ip)" >> $GITHUB_OUTPUT
-              working-directory: ./terraform
 
             - name: Login to AWS ECR
               id: login-ecr
