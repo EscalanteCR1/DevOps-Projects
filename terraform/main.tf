@@ -7,7 +7,7 @@ terraform{
     }
     backend "s3" {
         key            = "aws/ec2/terraform.tfstate"
-        bucket = "ec2-app-terraform-example-state-bucket"  
+        bucket = "ec2-example-app-terraform--state-bucket"  
     }
 }
 
