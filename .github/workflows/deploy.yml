@@ -61,22 +61,16 @@ jobs:
     deploy-app:
         runs-on: ubuntu-latest
         needs: deploy-infra
-
         steps:
             - name: Checkout
               uses: actions/checkout@v3
 
+            - name: Set IP env variable
+              run: echo SERVER_PUBLIC_IP=${{ needs.deploy-infra.outputs.SERVER_PUBLIC_IP }} >> $GITHUB_ENV
+            
             - name: Login to AWS ECR
               id: login-ecr
               uses: aws-actions/amazon-ecr-login@v1
-
-            - name: Ensure ECR repository exists
-              run: |
-                aws ecr describe-repositories --repository-names $REPOSITORY || \
-                aws ecr create-repository --repository-name $REPOSITORY
-              env:
-                AWS_REGION: us-east-1
-                REPOSITORY: example-node-app  
 
             - name: Build, push docker image
               env:
@@ -96,7 +90,7 @@ jobs:
                 AWS_DEFAULT_REGION: us-east-1
               uses: appleboy/ssh-action@master
               with:
-                host: ${{ needs.deploy-infra.outputs.SERVER_PUBLIC_IP }}
+                host: ${{ env.SERVER_PUBLIC_IP }}
                 username: ubuntu
                 key: ${{ env.PRIVATE_SSH_KEY }}
                 envs: PRIVATE_SSH_KEY,REGISTRY,REPOSITORY,IMAGE_TAG,AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_DEFAULT_REGION,AWS_REGION
