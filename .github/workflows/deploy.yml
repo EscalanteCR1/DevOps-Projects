@@ -102,10 +102,8 @@ jobs:
                 envs: PRIVATE_SSH_KEY,REGISTRY,REPOSITORY,IMAGE_TAG,AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY,AWS_DEFAULT_REGION,AWS_REGION
                 script: |-
                     sudo apt update
-                    sudo apt install docker.io -y
-                    sudo apt install python3-pip -y
-                    pip3 install awscli --upgrade --user
-                    export PATH=$PATH:~/.local/bin
+                    sudo apt install -y docker.io python3-pip
+                    python3 -m pip install --break-system-packages --upgrade awscli
                     aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin $REGISTRY
                     sudo docker stop myappcontainer || true
                     sudo docker rm myappcontainer || true
