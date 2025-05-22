@@ -20,7 +20,9 @@ resource "aws_instance" "server" {
     instance_type = "t2.micro"
     key_name = aws_key_pair.deployer.key_name
     vpc_security_group_ids = [ aws_security_group.terraformsecgroup.id ]
+    subnet_id              = "subnet-0f5ce5add2be1a0bf"
     iam_instance_profile = aws_iam_instance_profile.ec2-profile.name
+    associate_public_ip_address = true
     connection {
         type        = "ssh"
         host        = self.public_ip
