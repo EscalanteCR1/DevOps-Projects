@@ -40,6 +40,7 @@ resource "aws_iam_instance_profile" "ec2-profile" {
 
 resource "aws_security_group" "terraformsecgroup" {
 
+    vpc_id = "vpc-03e70548e8d09371a"
     egress = [
         {
             cidr_blocks = ["0.0.0.0/0"]

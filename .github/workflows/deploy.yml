@@ -41,6 +41,7 @@ jobs:
             -var="public_key=$PUBLIC_SSH_KEY" \
             -var="private_key=$PRIVATE_SSH_KEY" \
             -var="key_name=deployer-key" \
+            -var="vpc_id=vpc-03e70548e8d09371a" \
             -out=PLAN          
           working-directory: ./terraform
 
