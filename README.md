@@ -66,7 +66,7 @@ docker run -p 8080:8080 node-app
 
 ## 🤖 Automatización
 
-Este proyecto está listo para integrarse con **GitHub Actions** para automatizar la ejecución de Terraform al hacer push al repositorio.
+Este proyecto está listo para integrarse con **GitHub Actions** para automatizar la ejecución de Terraform al hacer push al repositorio..
 
 ---
 
