@@ -32,6 +32,9 @@ jobs:
 
         - name: Terraform Plan
           id: plan
+          env:
+            PUBLIC_SSH_KEY: ${{ env.PUBLIC_SSH_KEY }}
+            PRIVATE_SSH_KEY: ${{ env.PRIVATE_SSH_KEY }}
           run: |-
             terraform plan \
             -var="region=us-east-1" \
