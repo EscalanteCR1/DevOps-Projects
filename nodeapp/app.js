@@ -1,13 +1,10 @@
-const express = require('express');
-
+const express = require("express");
 const app = express();
 
-const PORT = 8080;
-
-app.get('/', (req, res) => {
-    res.send('Service is up and running using docker and terraform!');
+app.get("/", (req, res) => {
+    res.send("Service is up and running");
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(8080, () => {
+    console.log("Server is up");
 });
