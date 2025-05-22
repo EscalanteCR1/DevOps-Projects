@@ -46,11 +46,5 @@ jobs:
 
         - name: Terraform Apply
           id: apply
-          env:
-            PUBLIC_SSH_KEY: ${{ env.PUBLIC_SSH_KEY }}
-            PRIVATE_SSH_KEY: ${{ env.PRIVATE_SSH_KEY }}
-          run: terraform apply -auto-approve \
-                -var="public_key=$PUBLIC_SSH_KEY" \
-                -var="private_key=$PRIVATE_SSH_KEY" \
-                -var="key_name=deployer-key"
+          run: terraform apply -auto-approve PLAN
           working-directory: ./terraform
